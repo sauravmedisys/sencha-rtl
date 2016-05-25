@@ -32,11 +32,10 @@ Ext.define('rtltest.view.main.Main', {
             
         }
     },
-	    initComponent : function(){
+	initComponent : function(){
         var me       = this,
 			params   = Ext.urlDecode(window.location.search.substring(1));
 		
-		console.log("hello init");
 		if (params.lang) {
 			if(params.lang == 'ar'){
 				me.rtl =true;
@@ -56,7 +55,7 @@ Ext.define('rtltest.view.main.Main', {
         items	:[{
 			fieldLabel	: 'Select Language',
 			xtype 		: 'combo',
-			displayField:'language',
+			displayField: 'language',
 			emptyText	: 'Select a language...',
 			store	 	:{
 				fields	: ['code', 'language'],
@@ -91,11 +90,5 @@ Ext.define('rtltest.view.main.Main', {
 			name		: 'remember'
 		}]
         
-    }],
-	onSuccess: function() {
-		
-		return true;
-	},
-	
-      
+    }]
 });
