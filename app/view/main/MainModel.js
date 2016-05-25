@@ -7,7 +7,8 @@ Ext.define('rtltest.view.main.MainModel', {
     alias: 'viewmodel.main',
 
     data: {
-        name: 'rtltest'
+        name: 'RTL Test Apps',
+		rtlOrder: false
     }
 
     //TODO - add data, formulas and/or methods to support your view
