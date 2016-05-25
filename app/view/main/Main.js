@@ -19,16 +19,33 @@ Ext.define('rtltest.view.main.Main', {
 		
     ],
     xtype: 'app-main',
-	//rtl: true,
     controller: 'main',
     viewModel: {
         type: 'main'
     },
-
-    layout: {
+	rtl		: false,
+    layout	: {
         type: 'border'
     },
-
+	viewConfig    : {
+        listeners     : {
+            
+        }
+    },
+	    initComponent : function(){
+        var me       = this,
+			params   = Ext.urlDecode(window.location.search.substring(1));
+		
+		console.log("hello init");
+		if (params.lang) {
+			if(params.lang == 'ar'){
+				me.rtl =true;
+			}else{
+				me.rtl =false;
+			}
+		}
+        me.callParent(arguments);
+    },
     items: [{
         xtype: 'panel',
         bind: {
@@ -40,7 +57,6 @@ Ext.define('rtltest.view.main.Main', {
 			fieldLabel	: 'Select Language',
 			xtype 		: 'combo',
 			displayField:'language',
-//			queryMode	: 'local',
 			emptyText	: 'Select a language...',
 			store	 	:{
 				fields	: ['code', 'language'],
@@ -54,7 +70,7 @@ Ext.define('rtltest.view.main.Main', {
 					fn	: function(cb, records) {
 						var record = records[0];
 						window.location.search = Ext.urlEncode({"lang":record.get("code")});
-						rtl = true;
+						
 					},
 					scope: this
 				}
@@ -75,5 +91,11 @@ Ext.define('rtltest.view.main.Main', {
 			name		: 'remember'
 		}]
         
-    }]
+    }],
+	onSuccess: function() {
+		
+		return true;
+	},
+	
+      
 });
